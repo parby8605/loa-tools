@@ -16,28 +16,26 @@ export default function MaterialLoader() {
   const [leafStone, setLeafStone] = useState([]);
   const [forgeStone, setForgeStone] = useState([]);
   const [auxMaterial, setAuxMaterial] = useState([]);
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "";
+
   /** 재료 fetch api : reqParams에 body 작성해서 파라미터로 넘김( ex : { ItemName: "명예의 파편" }) */
   async function fetchItems(reqParams) {
     try {
-      console.log(process.env.NEXT_PUBLIC_API_MAIN_KEY);
-      const response = await fetch(`${baseURL}/markets/items`, {
+      const response = await fetch("/api/package-efficiency", {
         method: "POST",
-        // prettier-ignore
         headers: {
-          'Content-Type': 'application/json',
-          'authorization': `bearer ${process.env.NEXT_PUBLIC_API_MAIN_KEY}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(reqParams),
       });
+
       if (!response.ok) {
         throw new Error(`Fetch Error! status: ${response.status}`);
       }
+
       const data = await response.json();
-      console.log(data);
-      return data.Items[0];
+      return data;
     } catch (e) {
-      console.log("Fetching error : ", e);
+      console.error("Fetching error : ", e);
     }
   }
   useEffect(() => {
@@ -49,6 +47,7 @@ export default function MaterialLoader() {
         ItemTier: 3,
         SortCondition: "ASC",
       });
+      console.log("honorshard : ", honorShard);
       setHonorShard(honorShard);
     }
     fetchAllMaterial();
