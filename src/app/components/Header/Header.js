@@ -15,8 +15,8 @@ export default function Header() {
           <Link href={"/package-efficiency"}>
             <button className={style.Button}>패키지 효율 계산</button>
           </Link>
-          <Link href={"/"}>
-            <button className={style.Button}>품질작 시뮬레이터</button>
+          <Link href={"/upgradesimulator"}>
+            <button className={style.Button}>품질 시뮬레이터</button>
           </Link>
         </div>
       </div>
