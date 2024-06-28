@@ -16,6 +16,7 @@ export default function MaterialLoader() {
   const [leafStone, setLeafStone] = useState([]);
   const [forgeStone, setForgeStone] = useState([]);
   const [auxMaterial, setAuxMaterial] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   /** 재료 fetch api : reqParams에 body 작성해서 파라미터로 넘김( ex : { ItemName: "명예의 파편" }) */
   async function fetchItems(reqParams) {
@@ -47,17 +48,41 @@ export default function MaterialLoader() {
         ItemTier: 3,
         SortCondition: "ASC",
       });
-      console.log("honorshard : ", honorShard);
       setHonorShard(honorShard);
+
+      const oreha = await fetchItems({
+        Sort: "GRADE",
+        CategoryCode: 50010,
+        ItemName: "오레하",
+        ItemTier: 3,
+        SortCondition: "ASC",
+      });
+      setOreha(oreha);
+
+      const leafStone = fetchItems({
+        Sort: "GRADE",
+        CategoryCode: 50010,
+        ItemName: "돌파석",
+        ItemTier: 3,
+        SortCondition: "ASC",
+      });
+      setLeafStone(leafStone);
     }
     fetchAllMaterial();
+    setLoading(false);
   }, []);
-  console.log(honorShard);
+
+  // 데이터 로딩중일경우 노출
+  if (loading) {
+    return <div>Now Loading...</div>;
+  }
+
   return (
     <>
       <div>
         <div>Response Test</div>
-        <div>YDayAvgPrice : {honorShard.YDayAvgPrice}</div>
+        <div>YDayAvgPrice : {honorShard[0]?.YDayAvgPrice}</div>
+        <div>oreha : {oreha[0]?.Grade}</div>
       </div>
     </>
   );
