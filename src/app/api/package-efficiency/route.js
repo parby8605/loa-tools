@@ -17,6 +17,7 @@ export async function POST(req) {
       throw new Error(`Fetch Error! status: ${response.status}`)
     }
     const data = await response.json()
+
     return NextResponse.json(data.Items, { status: 200 })
   } catch (e) {
     console.log('Fetching error : ', e)

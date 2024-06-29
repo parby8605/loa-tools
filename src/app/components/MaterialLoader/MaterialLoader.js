@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import style from '@/app/components/MaterialLoader/MaterialLoader.module.css'
+import Image from 'next/image'
+import MaterialContainer from './MaterialContainer'
 
 export default function MaterialLoader() {
   /**
@@ -59,7 +62,7 @@ export default function MaterialLoader() {
       })
       setOreha(oreha)
 
-      const leafStone = fetchItems({
+      const leafStone = await fetchItems({
         Sort: 'GRADE',
         CategoryCode: 50010,
         ItemName: '돌파석',
@@ -68,7 +71,7 @@ export default function MaterialLoader() {
       })
       setLeafStone(leafStone)
 
-      const forgeStone = fetchItems({
+      const forgeStone = await fetchItems({
         Sort: 'GRADE',
         CategoryCode: 50010,
         ItemName: '강석',
@@ -77,7 +80,7 @@ export default function MaterialLoader() {
       })
       setForgeStone(forgeStone)
 
-      const auxMaterial = fetchItems({
+      const auxMaterial = await fetchItems({
         Sort: 'GRADE',
         CategoryCode: 50020,
         ItemName: '태양',
@@ -97,10 +100,13 @@ export default function MaterialLoader() {
 
   return (
     <>
-      <div>
-        <div>Response Test</div>
-        <div>YDayAvgPrice : {honorShard[0]?.YDayAvgPrice}</div>
-        <div>oreha : {oreha[0]?.Grade}</div>
+      <div className={style.letterBox}>재련 재료 가격 정보</div>
+      <div className={style.itemWrapper}>
+        <MaterialContainer itemArray={honorShard} />
+        <MaterialContainer itemArray={oreha} />
+        <MaterialContainer itemArray={leafStone} />
+        <MaterialContainer itemArray={forgeStone} />
+        <MaterialContainer itemArray={auxMaterial} />
       </div>
     </>
   )
