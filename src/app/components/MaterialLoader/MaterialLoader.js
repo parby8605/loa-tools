@@ -100,7 +100,7 @@ export default function MaterialLoader() {
 
   return (
     <>
-      <div className={style.letterBox}>재련 재료 가격 정보</div>
+      <div className={style.letterBox}>재련 재료 가격</div>
       <div className={style.itemWrapper}>
         <MaterialContainer itemArray={honorShard} />
         <MaterialContainer itemArray={oreha} />
