@@ -1,5 +1,6 @@
 import './globals.css'
 import Header from '@/app/components/Header/Header'
+import Footer from '@/app/components/Footer/Footer'
 
 export const metadata = {
   title: 'LOA TOOLS',
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         <div id='root'>{children}</div>
+        <Footer />
       </body>
     </html>
   )

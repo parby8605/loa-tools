@@ -56,7 +56,7 @@ export default function MaterialLoader() {
       const oreha = await fetchItems({
         Sort: 'GRADE',
         CategoryCode: 50010,
-        ItemName: '오레하',
+        ItemName: '상급 오레하',
         ItemTier: 3,
         SortCondition: 'ASC',
       })
@@ -95,7 +95,12 @@ export default function MaterialLoader() {
 
   // 데이터 로딩중일경우 노출
   if (loading) {
-    return <div>Now Loading...</div>
+    return (
+      <>
+        <div className={style.letterBox}>재련 재료 가격</div>
+        <div className={style.itemWrapper}>Now Loading...</div>
+      </>
+    )
   }
 
   return (

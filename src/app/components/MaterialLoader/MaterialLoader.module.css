@@ -3,8 +3,6 @@
   font-size: 20px;
   font-weight: 800;
   padding: 10px 0 10px 4px;
-  margin-top: 10px;
-  width: 20%;
   align-items: center;
   border: solid 0.5px gray;
   margin-left: 10px;
@@ -18,8 +16,7 @@
 .itemWrapper {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  height: 85dvh;
+  height: 80dvh;
   overflow-y: scroll;
   padding: 4px;
   border: solid 0.5px gray;
@@ -32,7 +29,6 @@
   margin-right: 8px;
   margin-left: 8px;
   flex-direction: row;
-  margin-bottom: 1rem;
   align-items: center;
   border-bottom: solid 0.5px gray;
 }

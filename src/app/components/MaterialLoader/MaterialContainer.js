@@ -13,7 +13,7 @@ export default function MaterialContainer({ itemArray }) {
               </div>
               <div className={style.itemInfo}>
                 <div className={style.itemName}>{item.Name}</div>
-                <div className={style.itemPrice}>{item.RecentPrice}Gold</div>
+                <div className={style.itemPrice}>{item.RecentPrice} Gold</div>
               </div>
             </div>
           )

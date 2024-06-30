@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  padding: 1rem 0 1rem 0;
+  background-color: #2ec4b6;
+}
+
+.footerContent {
+  padding: 4px;
+}
