@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <title>LOA TOOLS</title>
         <meta name='description' content='Web site created...' />
       </head>
-      <body>
+      <body className='bg-[rgb(250,250,250)]'>
         <Header />
         <div id='root'>{children}</div>
         <Footer />

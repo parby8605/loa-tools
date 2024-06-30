@@ -4,7 +4,8 @@
   font-weight: 800;
   padding: 10px 0 10px 4px;
   align-items: center;
-  border: solid 0.5px gray;
+  border: solid 0.5px rgb(199, 199, 199, 0.5);
+  background-color: white;
   margin-left: 10px;
 }
 
@@ -19,7 +20,8 @@
   height: 80dvh;
   overflow-y: scroll;
   padding: 4px;
-  border: solid 0.5px gray;
+  border: solid 0.5px rgb(199, 199, 199, 0.5);
+  background-color: white;
   border-top: 0px;
   margin-left: 10px;
 }
