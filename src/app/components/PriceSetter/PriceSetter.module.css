@@ -14,12 +14,21 @@
   justify-content: start;
 }
 .price {
+  display: flex;
+  flex-direction: column;
   padding-right: 15dvh;
 }
 
 .price input {
   border-bottom: 0.5px solid black;
   width: 40%;
+  text-align: right;
+}
+
+.nospinner::-webkit-inner-spin-button,
+.nospinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .priceRatio {
