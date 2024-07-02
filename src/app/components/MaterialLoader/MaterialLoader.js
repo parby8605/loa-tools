@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import style from '@/app/components/MaterialLoader/MaterialLoader.module.css'
-import Image from 'next/image'
 import MaterialContainer from './MaterialContainer'
+import PriceSetter from '@/app/components/PriceSetter/PriceSetter'
 
 export default function MaterialLoader() {
   /**
@@ -22,9 +22,9 @@ export default function MaterialLoader() {
   const [loading, setLoading] = useState(true)
 
   /** 재료 fetch api : reqParams에 body 작성해서 파라미터로 넘김( ex : { ItemName: "명예의 파편" }) */
-  async function fetchItems(reqParams) {
+  async function fetchItems(reqParams, update) {
     try {
-      const response = await fetch('/api/package-efficiency', {
+      const response = await fetch(`/api/package-efficiency?update=${update}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,51 +42,68 @@ export default function MaterialLoader() {
       console.error('Fetching error : ', e)
     }
   }
+
+  // SSR vs CSR 생각 -> 추후 가격 수정기능 확장 생각하면 CSR이 맞을듯
   useEffect(() => {
     async function fetchAllMaterial() {
-      const honorShard = await fetchItems({
-        Sort: 'GRADE',
-        CategoryCode: 50010,
-        ItemName: '명예의 파편 주머니(대)',
-        ItemTier: 3,
-        SortCondition: 'ASC',
-      })
+      const honorShard = await fetchItems(
+        {
+          Sort: 'GRADE',
+          CategoryCode: 50010,
+          ItemName: '명예의 파편 주머니(대)',
+          ItemTier: 3,
+          SortCondition: 'ASC',
+        },
+        false,
+      )
       setHonorShard(honorShard)
 
-      const oreha = await fetchItems({
-        Sort: 'GRADE',
-        CategoryCode: 50010,
-        ItemName: '상급 오레하',
-        ItemTier: 3,
-        SortCondition: 'ASC',
-      })
+      const oreha = await fetchItems(
+        {
+          Sort: 'GRADE',
+          CategoryCode: 50010,
+          ItemName: '상급 오레하',
+          ItemTier: 3,
+          SortCondition: 'ASC',
+        },
+        false,
+      )
       setOreha(oreha)
 
-      const leafStone = await fetchItems({
-        Sort: 'GRADE',
-        CategoryCode: 50010,
-        ItemName: '돌파석',
-        ItemTier: 3,
-        SortCondition: 'ASC',
-      })
+      const leafStone = await fetchItems(
+        {
+          Sort: 'GRADE',
+          CategoryCode: 50010,
+          ItemName: '돌파석',
+          ItemTier: 3,
+          SortCondition: 'ASC',
+        },
+        false,
+      )
       setLeafStone(leafStone)
 
-      const forgeStone = await fetchItems({
-        Sort: 'GRADE',
-        CategoryCode: 50010,
-        ItemName: '강석',
-        ItemTier: 3,
-        SortCondition: 'ASC',
-      })
+      const forgeStone = await fetchItems(
+        {
+          Sort: 'GRADE',
+          CategoryCode: 50010,
+          ItemName: '강석',
+          ItemTier: 3,
+          SortCondition: 'ASC',
+        },
+        false,
+      )
       setForgeStone(forgeStone)
 
-      const auxMaterial = await fetchItems({
-        Sort: 'GRADE',
-        CategoryCode: 50020,
-        ItemName: '태양',
-        ItemTier: 3,
-        SortCondition: 'ASC',
-      })
+      const auxMaterial = await fetchItems(
+        {
+          Sort: 'GRADE',
+          CategoryCode: 50020,
+          ItemName: '태양',
+          ItemTier: 3,
+          SortCondition: 'ASC',
+        },
+        false,
+      )
       setAuxMaterial(auxMaterial)
     }
     fetchAllMaterial()
@@ -104,15 +121,26 @@ export default function MaterialLoader() {
   }
 
   return (
-    <>
-      <div className={style.letterBox}>재련 재료 가격</div>
-      <div className={style.itemWrapper}>
-        <MaterialContainer itemArray={honorShard} />
-        <MaterialContainer itemArray={oreha} />
-        <MaterialContainer itemArray={leafStone} />
-        <MaterialContainer itemArray={forgeStone} />
-        <MaterialContainer itemArray={auxMaterial} />
+    <div className='my-2 flex flex-row w-full flex-grow justify-between'>
+      <div className='w-[20%]'>
+        <div className={style.letterBox}>
+          <div>재련 재료 가격</div>
+          {/* <button onClick={() => fetchNewItems()}>⟳</button> */}
+        </div>
+        <div className={style.itemWrapper}>
+          <MaterialContainer itemArray={honorShard} />
+          <MaterialContainer itemArray={oreha} />
+          <MaterialContainer itemArray={leafStone} />
+          <MaterialContainer itemArray={forgeStone} />
+          <MaterialContainer itemArray={auxMaterial} />
+        </div>
       </div>
-    </>
+      <div className='flex flex-col w-[75%]'>
+        <div>
+          <PriceSetter />
+        </div>
+        <div>패키지선택 및 효율표시</div>
+      </div>
+    </div>
   )
 }
