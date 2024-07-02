@@ -14,7 +14,7 @@ export default function PriceSetter() {
     <div className={style.priceContainer}>
       <div className='flex flex-row items-center gap-x-4 mb-4'>
         <Image src={goldIMG} width={46} height={46} alt='GOLD' />
-        <div>골드 시세 입력</div>
+        <div className='font-semibold text-[20px]'>골드 시세 입력</div>
       </div>
       <div className={style.priceWrapper}>
         <div className={style.price}>
