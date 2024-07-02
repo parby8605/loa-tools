@@ -7,6 +7,7 @@
   border: solid 0.5px rgb(199, 199, 199, 0.5);
   background-color: white;
   margin-left: 10px;
+  justify-content: space-between;
 }
 
 .materialAlert {
