@@ -1,0 +1,39 @@
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  border: solid 0.5px rgb(199, 199, 199, 0.5);
+  background-color: white;
+}
+
+.priceWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+.price {
+  display: flex;
+  flex-direction: column;
+  padding-right: 15dvh;
+}
+
+.price input {
+  border-bottom: 0.5px solid black;
+  width: 40%;
+  text-align: right;
+}
+
+.nospinner::-webkit-inner-spin-button,
+.nospinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.priceRatio {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  align-items: center;
+}

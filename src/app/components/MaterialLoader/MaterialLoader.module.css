@@ -1,0 +1,54 @@
+.letterBox {
+  display: flex;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 10px 0 10px 4px;
+  align-items: center;
+  border: solid 0.5px rgb(199, 199, 199, 0.5);
+  background-color: white;
+  margin-left: 10px;
+  justify-content: space-between;
+}
+
+.materialAlert {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.itemWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 80dvh;
+  overflow-y: scroll;
+  padding: 4px;
+  border: solid 0.5px rgb(199, 199, 199, 0.5);
+  background-color: white;
+  border-top: 0px;
+  margin-left: 10px;
+}
+
+.itemContainer {
+  display: flex;
+  margin-right: 8px;
+  margin-left: 8px;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid 0.5px gray;
+}
+
+.itemImage {
+  padding: 1vh;
+  margin-right: 1vh;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7dvh;
+  font-weight: 600;
+}
+
+.itemName {
+  font-size: 12px;
+  color: gray;
+}
