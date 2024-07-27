@@ -17,6 +17,7 @@ export default function MaterialLoader() {
   const [honorShard, setHonorShard] = useState([])
   const [destinyShard, setDestinyShard] = useState([])
   const [oreha, setOreha] = useState([])
+  const [abidos, setAbidos] = useState([])
   const [leafStone, setLeafStone] = useState([])
   const [destinyLeafStone, setDestinyLeafStone] = useState([])
   const [forgeStone, setForgeStone] = useState([])
@@ -109,6 +110,15 @@ export default function MaterialLoader() {
       )
       setOreha(oreha)
 
+      const abidos = await fetchItems({
+        Sort: 'GRADE',
+        CategoryCode: 50010,
+        ItemName: '아비도스',
+        ItemTier: 4,
+        SortCondition: 'ASC',
+      })
+      setAbidos(abidos)
+
       const leafStone = await fetchItems(
         {
           Sort: 'GRADE',
@@ -179,6 +189,7 @@ export default function MaterialLoader() {
           <MaterialContainer itemArray={honorShard} />
           <MaterialContainer itemArray={destinyShard} />
           <MaterialContainer itemArray={oreha} />
+          <MaterialContainer itemArray={abidos} />
           <MaterialContainer itemArray={leafStone} />
           <MaterialContainer itemArray={destinyLeafStone} />
           <MaterialContainer itemArray={forgeStone} />
