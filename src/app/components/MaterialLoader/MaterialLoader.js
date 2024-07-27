@@ -15,8 +15,10 @@ export default function MaterialLoader() {
    * 5. 추가 강화 재료 -> CategoryCode: 50020 ItemName : "태양"
    */
   const [honorShard, setHonorShard] = useState([])
+  const [destinyShard, setDestinyShard] = useState([])
   const [oreha, setOreha] = useState([])
   const [leafStone, setLeafStone] = useState([])
+  const [destinyLeafStone, setDestinyLeafStone] = useState([])
   const [forgeStone, setForgeStone] = useState([])
   const [auxMaterial, setAuxMaterial] = useState([])
   const [loading, setLoading] = useState(true)
@@ -57,6 +59,24 @@ export default function MaterialLoader() {
         false,
       )
       setHonorShard(honorShard)
+
+      const destinyShard = await fetchItems({
+        Sort: 'GRADE',
+        CategoryCode: 50010,
+        ItemName: '운명의 파편',
+        ItemTier: 4,
+        SortCondition: 'ASC',
+      })
+      setDestinyShard(destinyShard)
+
+      const destinyLeafStone = await fetchItems({
+        Sort: 'GRADE',
+        CategoryCode: 50010,
+        ItemName: '운명의 돌파',
+        ItemTier: 4,
+        SortCondition: 'ASC',
+      })
+      setDestinyLeafStone(destinyLeafStone)
 
       const oreha = await fetchItems(
         {
@@ -129,8 +149,10 @@ export default function MaterialLoader() {
         </div>
         <div className={style.itemWrapper}>
           <MaterialContainer itemArray={honorShard} />
+          <MaterialContainer itemArray={destinyShard} />
           <MaterialContainer itemArray={oreha} />
           <MaterialContainer itemArray={leafStone} />
+          <MaterialContainer itemArray={destinyLeafStone} />
           <MaterialContainer itemArray={forgeStone} />
           <MaterialContainer itemArray={auxMaterial} />
         </div>
