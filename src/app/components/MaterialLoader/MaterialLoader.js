@@ -20,7 +20,9 @@ export default function MaterialLoader() {
   const [leafStone, setLeafStone] = useState([])
   const [destinyLeafStone, setDestinyLeafStone] = useState([])
   const [forgeStone, setForgeStone] = useState([])
+  const [destinyForgeStone, setDestinyForgeStone] = useState([])
   const [auxMaterial, setAuxMaterial] = useState([])
+  const [destinyAuxMaterial, setDestinyAuxMaterial] = useState([])
   const [loading, setLoading] = useState(true)
 
   /** 재료 fetch api : reqParams에 body 작성해서 파라미터로 넘김( ex : { ItemName: "명예의 파편" }) */
@@ -78,6 +80,23 @@ export default function MaterialLoader() {
       })
       setDestinyLeafStone(destinyLeafStone)
 
+      const destinyForgeStoneA = await fetchItems({
+        Sort: 'GRADE',
+        CategoryCode: 50010,
+        ItemName: '운명의 수호석',
+        ItemTier: 4,
+        SortCondition: 'ASC',
+      })
+
+      const destinyForgeStoneB = await fetchItems({
+        Sort: 'GRADE',
+        CategoryCode: 50010,
+        ItemName: '운명의 파괴석',
+        ItemTier: 4,
+        SortCondition: 'ASC',
+      })
+      setDestinyForgeStone([...destinyForgeStoneA, ...destinyForgeStoneB])
+
       const oreha = await fetchItems(
         {
           Sort: 'GRADE',
@@ -125,6 +144,15 @@ export default function MaterialLoader() {
         false,
       )
       setAuxMaterial(auxMaterial)
+
+      const destinyAuxMaterial = await fetchItems({
+        Sort: 'GRADE',
+        CategoryCode: 50020,
+        ItemName: '숨결',
+        ItemTier: 4,
+        SortCondition: 'ASC',
+      })
+      setDestinyAuxMaterial(destinyAuxMaterial)
     }
     fetchAllMaterial()
     setLoading(false)
@@ -154,7 +182,9 @@ export default function MaterialLoader() {
           <MaterialContainer itemArray={leafStone} />
           <MaterialContainer itemArray={destinyLeafStone} />
           <MaterialContainer itemArray={forgeStone} />
+          <MaterialContainer itemArray={destinyForgeStone} />
           <MaterialContainer itemArray={auxMaterial} />
+          <MaterialContainer itemArray={destinyAuxMaterial} />
         </div>
       </div>
       <div className='flex flex-col w-[75%]'>
